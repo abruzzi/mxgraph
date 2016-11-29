@@ -42,6 +42,7 @@
 				new mxRubberband(graph);			
 				
 				var parent = graph.getDefaultParent();			
+				// var layout = new mxCircleLayout(graph);
 				var layout = new mxFastOrganicLayout(graph);
 
 				// Load cells and layouts the graph
@@ -52,8 +53,8 @@
 					var v4 = graph.insertVertex(parent, null, '4', 0, 0, 80, 30);
 				
 					var vnode = graph.insertVertex(parent, null, "group", 0, 0, 150, 150);
-					var v2 = graph.insertVertex(vnode, null, '2', 20, 20, 80, 30);
-					var v3 = graph.insertVertex(vnode, null, '3', 20, 20, 80, 30);
+					var v2 = graph.insertVertex(vnode, null, '2', 0, 0, 80, 30);
+					var v3 = graph.insertVertex(vnode, null, '3', 0, 0, 80, 30);
 
 					//a trick walk around, just add an black node
 					var v5 = graph.insertVertex(parent, null, '', 0, 0, 0, 0);			
@@ -63,11 +64,22 @@
 					var e3 = graph.insertEdge(parent, null, '', v3, v4);
 					var e4 = graph.insertEdge(parent, null, '', v2, v4);				
 
+					var vnode2 = graph.insertVertex(parent, null, "group 2", 0, 0, 150, 150);
+					var v6 = graph.insertVertex(vnode2, null, '6', 0, 0, 80, 30);
+					var v7 = graph.insertVertex(vnode2, null, '7', 0, 0, 80, 30);
+					var v8 = graph.insertVertex(vnode2, null, '8', 0, 0, 80, 30);
+
+					var e67 = graph.insertEdge(parent, null, '', v6, v7);
+					var e78 = graph.insertEdge(parent, null, '', v7, v8);
+					var e86 = graph.insertEdge(parent, null, '', v8, v6);
+					var e1v2 = graph.insertEdge(parent, null, '', v1, vnode2);
+
 					graph.insertEdge(parent, null, '', vnode, v5, ';strokeColor=#fff;fillColor=#fff');
 
 					// Executes the layout
 					layout.execute(parent);
 					layout.execute(vnode);
+					layout.execute(vnode2);
 				}
 				finally
 				{
